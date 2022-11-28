@@ -19,6 +19,7 @@ function App() {
 
   return <>
   <Routes>
+  <Route path='/' element={<Signup/>}/>
   <Route path='/users/signup' element={<Signup/>}/>
   <Route path='/users/login' element={<Login/>}/>
   <Route path='/bookmyshow/movies/admin' element={<Admin/>}/>
