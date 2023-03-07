@@ -1,5 +1,4 @@
 import './App.css';
-import React,{useContext} from 'react'
 import {Routes,Route} from 'react-router-dom'
 import Movies from './components/Movies';
 import Movie from './components/Movie';

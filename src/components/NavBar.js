@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,17 +10,23 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { MyContext } from "../components/Context";
 
 
-function NavBar({data}) {
+
+function NavBar() {
+
+  let {user} = useContext(MyContext)
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const token = localStorage.getItem("Authorization")
 
-let navigate = useNavigate();
+ let navigate = useNavigate();
 
  let logOut = () => {
   localStorage.removeItem("Authorization")
+  localStorage.removeItem("email")
   navigate('/users/login')
  }
 
@@ -104,11 +110,13 @@ let navigate = useNavigate();
                 {
                   token ? null :  <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={() => navigate('/users/signup')}>Signup</Typography>
                 }
-                 
                   {
-                    token ? <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={logOut}>{data}Logout</Typography>
+                    token ? <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={logOut}>Logout</Typography>
                     :
                     <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={() => navigate('/users/login')}>Login</Typography>
+                  }
+                  {
+                    token && <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={logOut}>{user?.fullName}</Typography>
                   }
                   
                 </MenuItem>
@@ -163,9 +171,12 @@ let navigate = useNavigate();
                 }
                  
                   {
-                    token ? <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={logOut}>{data}Logout</Typography>
+                    token ? <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={logOut}>Logout</Typography>
                     :
                     <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={() => navigate('/users/login')}>Login</Typography>
+                  }
+                                    {
+                    token && <Typography sx={{fontSize:"14px",fontWeight:500}} onClick={logOut}>{user?.fullName}</Typography>
                   }
               </Button>
           </Box>

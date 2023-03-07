@@ -194,7 +194,7 @@ function SeatBooking() {
   <Box sx={{padding:"30px 0px",width:"70%",margin:"0px auto"}}>
    <h6 style={{fontSize:"18px",color:"whitesmoke",margin:15}}>{movie.name}</h6>
    <h6 style={{fontSize:"18px",color:"whitesmoke",margin:15}}>Today, 23 Nov | {movie.type}</h6>
-   <p style={{color:"white",margin:15}}>{theater && theater.length > 0 ? theater.find((e,i) => e.theaterid === theaterId).theatername : ''}</p>
+   <p style={{color:"white",margin:15}}>{theater && theater.length > 0 ? theater.find((e,i) => e.theaterid === theaterId)?.theatername : ''}</p>
    <p style={{color:"white",margin:15,fontWeight:600}}>{show && show.length > 0 ? show.find(e => e.showid === showId).show : ''}</p>
 
   </Box>

@@ -22,7 +22,7 @@ const { id,theaterId,showId,selected,total } = useParams()
 let [movie,setMovie] = useState({})
 let [show,setShow] = useState([])
 let [theater,setTheater] = useState([])
-let [email,setEmail] = useState("")
+// let [email,setEmail] = useState("")
 
 
 
@@ -109,7 +109,7 @@ useEffect(() => {
         alt="The house from the offer."
         src={movie.poster}
         />
-        <p style={{margin:0,fontWeight:700}}>{theater && theater.length > 0 ? theater.find(v => v.theaterid === theaterId).theatername : ''}</p>
+        <p style={{margin:0,fontWeight:700}}>{theater && theater.length > 0 ? theater.find(v => v.theaterid === theaterId)?.theatername : ''}</p>
         <p style={{margin:0,fontWeight:600}}>Show Time : {show && show.length > 0 ? show.find(e => e.showid === showId).show : ''}</p>
         <p style={{margin:0,fontWeight:600}}>Your Seats : {selected}</p>
         <Box sx={{display:"flex",justifyContent:"space-between"}}>

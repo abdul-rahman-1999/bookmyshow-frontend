@@ -49,7 +49,7 @@ function Bookings() {
    <h6 style={{fontSize:"18px",color:"whitesmoke",margin:15}}>{movie.name}</h6>
    <h6 style={{fontSize:"18px",color:"whitesmoke",margin:15}}>Today, 23 Nov | {movie.type}</h6>
 
-   <p style={{color:"white",margin:15}}>{theater && theater.length > 0 ? theater.find((e,i) => e.theaterid === theaterId).theatername : ''}</p>
+   <p style={{color:"white",margin:15}}>{theater && theater ? theater.find((e,i) => e.theaterid === theaterId)?.theatername : ''}</p>
 
   </Box>
   </Box>
@@ -68,7 +68,7 @@ function Bookings() {
 function Showtime({show,movie,theaterId}){
   let navigate = useNavigate()
   let showSelect = () => {
-    navigate(`/bookmyshow/movies/${movie.id}/theater/${theaterId}/${show.showid}/seatbooking`)
+    navigate(`/bookmyshow/movies/${movie.id}/theater/${theaterId}/${show?.showid}/seatbooking`)
   }
 
     return<>

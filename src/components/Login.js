@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -8,6 +8,7 @@ import {useFormik} from "formik";
 import * as yup from "yup"
 import NavBar from './NavBar';
 import { ToastContainer, toast } from 'react-toastify';
+import { MyContext } from "../components/Context";
 
 
 
@@ -20,7 +21,8 @@ const formValidationSchema = yup.object({
 
 function Login() {
 
-let navigate=useNavigate()
+let {setUser} = useContext(MyContext), 
+navigate=useNavigate();
 
 const {handleSubmit, values, handleChange,handleBlur,touched, errors} = useFormik({
     initialValues:{
@@ -32,7 +34,6 @@ const {handleSubmit, values, handleChange,handleBlur,touched, errors} = useFormi
     onSubmit:(loginUser) => {
         addList(loginUser)
     }
-
 })
 
 let addList = (loginUser) => {
@@ -45,13 +46,19 @@ let addList = (loginUser) => {
       })
           .then((data) => data.json())
           .then(data => {console.log(data)
+            setUser(data.userDetail)
           if(data){
             localStorage.setItem("Authorization", data.token)
+            localStorage.setItem("email", data.userDetail.email)
             if (data.msg === `Login Successfully`) {
               if(loginUser.role === 'Admin'){
-                navigate('/bookmyshow/movies/admin')
+                setTimeout(() =>{
+                  navigate('/bookmyshow/movies/admin')
+                },3000)
               }else if(loginUser.role === 'User'){
-              navigate('/bookmyshow/movies')
+                setTimeout(() =>{
+                  navigate('/bookmyshow/movies')
+                },3000)
               }else{
                 toast.error('Invalid Credentials', {
                   position: "top-center",

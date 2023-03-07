@@ -52,8 +52,11 @@ function Signup() {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                }),
-                navigate('/users/login'))
+                }))
+                .then(() =>setTimeout(() =>{
+                  navigate('/users/login')
+                },3000))
+  
     }
 
   return <>
